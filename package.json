@@ -1,0 +1,27 @@
+{
+  "name": "norynth-hermes-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:core": "npm run dev --workspace=apps/core",
+    "build:core": "npm run build --workspace=apps/core",
+    "start:core": "npm run start --workspace=apps/core",
+    "test:core": "npm run test --workspace=apps/core",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build:web": "npm run build --workspace=apps/web",
+    "start:web": "npm run start --workspace=apps/web",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "postinstall": "prisma generate"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "prisma": "^6.5.0"
+  }
+}

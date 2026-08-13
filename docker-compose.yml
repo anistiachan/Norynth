@@ -1,0 +1,36 @@
+services:
+  hermes:
+    build: .
+    container_name: hermes-core
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=file:./data/hermes.db
+      - NINEROUTER_BASE_URL=${NINEROUTER_BASE_URL}
+      - NINEROUTER_API_KEY=${NINEROUTER_API_KEY}
+      - NINEROUTER_MODEL=${NINEROUTER_MODEL}
+      - AI_MAX_HISTORY_MESSAGES=20
+      - SIGNAL_API_URL=http://signal-cli:8080
+      - SIGNAL_PHONE_NUMBER=${SIGNAL_PHONE_NUMBER}
+      - SIGNAL_POLL_INTERVAL_MS=5000
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    volumes:
+      - hermes-data:/app/prisma/data
+    depends_on:
+      - signal-cli
+
+  signal-cli:
+    image: bbernhard/signal-cli-rest-api:latest
+    container_name: signal-cli
+    ports:
+      - "8080:8080"
+    volumes:
+      - signal-data:/home/.local/share/signal-cli
+    environment:
+      - MODE=normal
+
+volumes:
+  hermes-data:
+  signal-data:

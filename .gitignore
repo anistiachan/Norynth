@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env*.local
+.next/
+prisma/data/
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
