@@ -12,6 +12,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
+  "optionalDependencies": {
+    "@next/swc-android-arm64": "14.2.3"
+  },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.3",
