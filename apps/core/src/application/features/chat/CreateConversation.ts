@@ -8,6 +8,8 @@ export interface CreateConversationCommand {
   externalUserId: string
   externalChatId: string
   title?: string
+  emoji?: string
+  systemPrompt?: string
 }
 
 export class CreateConversation {
@@ -36,6 +38,8 @@ export class CreateConversation {
         user.id,
         command.externalChatId,
         command.title || null,
+        command.emoji || '💬',
+        command.systemPrompt || null,
         new Date(),
         new Date()
       )

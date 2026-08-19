@@ -41,10 +41,18 @@ export function registerRoutes(server: FastifyInstance, deps: RouteDependencies)
   })
 
   server.post('/api/conversations', async (req, reply) => {
-    const body = req.body as { externalUserId?: string; externalChatId?: string; title?: string }
+    const body = req.body as {
+      externalUserId?: string
+      externalChatId?: string
+      title?: string
+      emoji?: string
+      systemPrompt?: string
+    }
     const externalUserId = body?.externalUserId || 'web-user'
     const externalChatId = body?.externalChatId || ''
     const title = body?.title
+    const emoji = body?.emoji
+    const systemPrompt = body?.systemPrompt
 
     if (!externalChatId) {
       return reply.code(400).send({ error: 'externalChatId is required.' })
@@ -58,6 +66,8 @@ export function registerRoutes(server: FastifyInstance, deps: RouteDependencies)
       externalUserId,
       externalChatId,
       title,
+      emoji,
+      systemPrompt,
     })
     return reply.send({ conversation })
   })

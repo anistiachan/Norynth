@@ -14,7 +14,9 @@ export class PrismaConversationRepository implements IConversationRepository {
       record.id,
       record.userId,
       record.externalChatId,
-      record.title || '',
+      record.title,
+      record.emoji,
+      record.systemPrompt,
       record.createdAt,
       record.updatedAt
     )
@@ -27,6 +29,8 @@ export class PrismaConversationRepository implements IConversationRepository {
         userId: conversation.userId,
         externalChatId: conversation.externalChatId,
         title: conversation.title,
+        emoji: conversation.emoji,
+        systemPrompt: conversation.systemPrompt,
         createdAt: conversation.createdAt,
         updatedAt: conversation.updatedAt,
       },
@@ -36,7 +40,9 @@ export class PrismaConversationRepository implements IConversationRepository {
       record.id,
       record.userId,
       record.externalChatId,
-      record.title || '',
+      record.title,
+      record.emoji,
+      record.systemPrompt,
       record.createdAt,
       record.updatedAt
     )
@@ -54,7 +60,9 @@ export class PrismaConversationRepository implements IConversationRepository {
           record.id,
           record.userId,
           record.externalChatId,
-          record.title || '',
+          record.title,
+          record.emoji,
+          record.systemPrompt,
           record.createdAt,
           record.updatedAt
         )

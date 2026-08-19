@@ -84,14 +84,16 @@ export class SendMessage {
       content: m.content,
     }))
 
-    // Determine system prompt based on chat topic
-    let topicPrompt = this.systemPrompt
-    if (command.externalChatId.endsWith('-coding')) {
-      topicPrompt = 'You are a Senior Software Engineer. Help the user write, debug, and understand code. Give clear, concise explanations and code examples.'
-    } else if (command.externalChatId.endsWith('-learning')) {
-      topicPrompt = 'You are an expert tutor. Guide the user step-by-step to learn complex concepts, using simple analogies and quiz questions.'
-    } else if (command.externalChatId.endsWith('-planning')) {
-      topicPrompt = 'You are a productivity advisor. Help the user prioritize, outline action steps, and schedule plans for their projects.'
+    // Determine system prompt based on custom channel prompt or topic default
+    let topicPrompt = conversation.systemPrompt || this.systemPrompt
+    if (!conversation.systemPrompt) {
+      if (command.externalChatId.endsWith('-coding')) {
+        topicPrompt = 'You are a Senior Software Engineer. Help the user write, debug, and understand code. Give clear, concise explanations and code examples.'
+      } else if (command.externalChatId.endsWith('-learning')) {
+        topicPrompt = 'You are an expert tutor. Guide the user step-by-step to learn complex concepts, using simple analogies and quiz questions.'
+      } else if (command.externalChatId.endsWith('-planning')) {
+        topicPrompt = 'You are a productivity advisor. Help the user prioritize, outline action steps, and schedule plans for their projects.'
+      }
     }
 
     // 6. Call AI Provider

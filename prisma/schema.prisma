@@ -5,7 +5,7 @@ datasource db {
 
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x", "linux-arm64-openssl-1.1.x"]
+  binaryTargets = ["native", "debian-openssl-1.1.x", "linux-arm64-openssl-1.1.x", "linux-arm64-openssl-3.0.x"]
 }
 
 model User {
@@ -23,6 +23,8 @@ model Conversation {
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   externalChatId String    @unique
   title          String?
+  emoji          String?   @default("💬")
+  systemPrompt   String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   messages       Message[]

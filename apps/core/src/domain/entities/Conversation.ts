@@ -4,7 +4,9 @@ export class Conversation {
     readonly userId: string,
     readonly externalChatId: string,
     readonly title: string | null,
-    readonly createdAt: Date,
-    readonly updatedAt: Date,
+    readonly emoji: string | null = '💬',
+    readonly systemPrompt: string | null = null,
+    readonly createdAt: Date = new Date(),
+    readonly updatedAt: Date = new Date(),
   ) {}
 }
